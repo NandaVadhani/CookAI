@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CookAI - AI Recipe Suggestion</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="App_CSS.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="#" class="logo">
+            <i class="fas fa-utensils"></i>
+            <h1>CookAI</h1>
+        </a>
+        <div class="nav-links">
+            <a href="#" class="nav-link active" onclick="showSection('home')">
+                <i class="fas fa-home"></i> Home
+            </a>
+            <a href="#" class="nav-link" onclick="showSection('add')">
+                <i class="fas fa-plus-circle"></i> Add Recipe
+            </a>
+            <a href="#" class="nav-link" onclick="showSection('about')">
+                <i class="fas fa-info-circle"></i> About
+            </a>
+            <a href="#" class="nav-link">
+                <i class="fas fa-envelope"></i> Contact
+            </a>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <!-- Home Section -->
+        <div id="home-section" class="section">
+            <div class="container">
+                <div class="main-logo">
+                    <h1>
+                        <i class="fas fa-utensils"></i> CookAI
+                    </h1>
+                    <p>Discover delicious recipes based on your available ingredients! Just type and select ingredients below.</p>
+                </div>
+                
+                <div class="search-container">
+                    <div class="relative">
+                        <input type="text" id="ingredientSearch" class="search-input" placeholder="Search ingredients...">
+                        <ul id="dropdown" class="dropdown hidden"></ul>
+                    </div>
+                    <div id="selectedIngredients" class="selected-ingredients"></div>
+
+                    <div class="filter-section">
+                        <button class="filter-button active" onclick="filterRecipes('all')">
+                            <i class="fas fa-utensils"></i> All Recipes
+                        </button>
+                        <button class="filter-button" onclick="filterRecipes('vegetarian')">
+                            <i class="fas fa-leaf"></i> Vegetarian
+                        </button>
+                        <button class="filter-button" onclick="filterRecipes('non-vegetarian')">
+                            <i class="fas fa-drumstick-bite"></i> Non-Vegetarian
+                        </button>
+                        <button class="filter-button" onclick="filterRecipes('healthy')">
+                            <i class="fas fa-heart"></i> Healthy
+                        </button>
+                        <button class="filter-button" onclick="filterRecipes('vegan')">
+                            <i class="fas fa-seedling"></i> Vegan
+                        </button>
+                        <button class="filter-button" onclick="filterRecipes('gluten-free')">
+                            <i class="fas fa-bread-slice"></i> Gluten-Free
+                        </button>
+                    </div>
+
+                    <div class="search-actions">
+                        <button class="apply-button" onclick="searchRecipes()">
+                            <i class="fas fa-search"></i> Find Recipes
+                        </button>
+                    </div>
+                </div>
+
+                <div id="loading" class="loading hidden">
+                    <div class="spinner"></div>
+                    <p class="text-gray-600">Finding delicious recipes...</p>
+                </div>
+
+                <div id="recipe-list" class="recipe-list"></div>
+            </div>
+        </div>
+
+        <!-- Add Recipe Section -->
+        <div id="add-section" class="section hidden">
+            <div class="search-container">
+                <h2 class="text-2xl font-bold mb-4 text-center text-gray-800">
+                    <i class="fas fa-plus-circle text-pink-500"></i> Add Your Recipe
+                </h2>
+                <form id="addRecipeForm" class="recipe-form">
+                    <div class="form-group">
+                        <label for="recipeTitle">Recipe Title</label>
+                        <input type="text" id="recipeTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="ingredients">Ingredients</label>
+                        <input type="text" id="ingredientInput" placeholder="Add ingredients...">
+                        <ul id="ingredientDropdown" class="dropdown hidden"></ul>
+                        <div id="selectedRecipeIngredients" class="selected-ingredients"></div>
+                        <input type="hidden" id="ingredients" name="ingredients">
+                    </div>
+                    <div class="form-group">
+                        <label for="instructions">Instructions</label>
+                        <textarea id="instructions" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="calories">Calories per Serving</label>
+                        <input type="number" id="calories" required min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="difficulty">Difficulty Level</label>
+                        <select id="difficulty" required>
+                            <option value="easy">Easy</option>
+                            <option value="medium">Medium</option>
+                            <option value="hard">Hard</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="prepTime">Preparation Time</label>
+                        <input type="text" id="prepTime" required placeholder="e.g., 30 mins">
+                    </div>
+                    <div class="form-group">
+                        <label for="servings">Number of Servings</label>
+                        <input type="number" id="servings" required min="1">
+                    </div>
+                    <div class="form-group">
+                        <label>Dietary Restrictions</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="dietary_restrictions" value="vegetarian"> Vegetarian</label>
+                            <label><input type="checkbox" name="dietary_restrictions" value="vegan"> Vegan</label>
+                            <label><input type="checkbox" name="dietary_restrictions" value="gluten-free"> Gluten-Free</label>
+                            <label><input type="checkbox" name="dietary_restrictions" value="healthy"> Healthy</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="imageUrl">Image URL</label>
+                        <input type="url" id="imageUrl" placeholder="https://...">
+                    </div>
+                    <div class="form-group">
+                        <label for="userEmail">Your Email</label>
+                        <input type="email" id="userEmail" required>
+                    </div>
+                    <button type="submit" class="submit-button">Add Recipe</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <div id="about-section" class="section hidden">
+            <div class="search-container">
+                <h2 class="text-2xl font-bold mb-4 text-center text-gray-800">
+                    <i class="fas fa-info-circle text-pink-500"></i> About CookAI
+                </h2>
+                <div class="about-content">
+                    <p class="text-gray-700 mb-4">CookAI is an AI-powered recipe suggestion system that helps you find the perfect recipe based on your available ingredients and dietary preferences.</p>
+                    <p class="text-gray-700">Our system uses advanced AI technology to match your ingredients with delicious recipes, taking into account your dietary restrictions and calorie requirements.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Connection Status Indicator -->
+    <div id="connection-status" class="connection-status">
+        <span class="status-dot"></span>
+        <span class="status-text">Checking connection...</span>
+    </div>
+
+    <script src="App_JS.js"></script>
+</body>
+</html>

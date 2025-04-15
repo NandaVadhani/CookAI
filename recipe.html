@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Details - CookAI</title>
+    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="App_CSS.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="App_Frontend.html" class="nav-logo">
+            <i class="fas fa-utensils"></i>
+            CookAI
+        </a>
+    </nav>
+
+    <div class="main-content">
+        <div class="container">
+            <div id="recipe-details" class="recipe-details">
+                <div class="recipe-header">
+                    <img id="recipe-image" src="" alt="Recipe Image">
+                    <div class="recipe-info">
+                        <h1 id="recipe-title"></h1>
+                        <div class="recipe-meta">
+                            <span><i class="fas fa-clock"></i> <span id="prep-time"></span></span>
+                            <span><i class="fas fa-fire"></i> <span id="calories"></span> cal/serving</span>
+                            <span><i class="fas fa-utensils"></i> <span id="servings"></span> servings</span>
+                        </div>
+                        <div id="recipe-tags" class="recipe-tags"></div>
+                    </div>
+                </div>
+
+                <div class="recipe-content">
+                    <div class="ingredients-section">
+                        <h2>Ingredients</h2>
+                        <ul id="ingredients-list"></ul>
+                    </div>
+
+                    <div class="instructions-section">
+                        <h2>Instructions</h2>
+                        <ol id="instructions-list"></ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const recipeId = urlParams.get('id');
+
+            if (recipeId) {
+                try {
+                    const response = await fetch(`http://localhost:3000/api/recipes/${recipeId}`);
+                    const recipe = await response.json();
+
+                    // Update recipe details
+                    document.getElementById('recipe-title').textContent = recipe.name;
+                    document.getElementById('recipe-image').src = recipe.image_url || 'https://via.placeholder.com/800x400';
+                    document.getElementById('prep-time').textContent = recipe.prep_time;
+                    document.getElementById('calories').textContent = recipe.calories_per_serving;
+                    document.getElementById('servings').textContent = recipe.servings;
+
+                    // Update dietary restrictions
+                    const tagsContainer = document.getElementById('recipe-tags');
+                    const restrictions = JSON.parse(recipe.dietary_restrictions);
+                    tagsContainer.innerHTML = restrictions.map(restriction => `
+                        <span class="tag">${restriction}</span>
+                    `).join('');
+
+                    // Update ingredients
+                    const ingredientsList = document.getElementById('ingredients-list');
+                    ingredientsList.innerHTML = recipe.ingredients.split(',').map(ingredient => `
+                        <li>${ingredient.trim()}</li>
+                    `).join('');
+
+                    // Update instructions
+                    const instructionsList = document.getElementById('instructions-list');
+                    instructionsList.innerHTML = recipe.instructions.split('\n').map(instruction => `
+                        <li>${instruction.trim()}</li>
+                    `).join('');
+                } catch (error) {
+                    console.error('Error:', error);
+                    document.getElementById('recipe-details').innerHTML = `
+                        <div class="error">
+                            <p>Error loading recipe details. Please try again.</p>
+                            <a href="App_Frontend.html" class="button">Back to Home</a>
+                        </div>
+                    `;
+                }
+            }
+        });
+    </script>
+</body>
+</html> 
