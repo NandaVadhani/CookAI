@@ -70,7 +70,7 @@ function selectIngredient(ingredient) {
 function updateSelectedIngredients() {
     const container = document.getElementById('selectedIngredients');
     container.innerHTML = selectedIngredients.map(ingredient => `
-        <div class="selected-ingredient">
+        <div class="ingredient-tag">
             ${ingredient}
             <button onclick="removeIngredient('${ingredient}')">
                 <i class="fas fa-times"></i>
@@ -95,6 +95,16 @@ function filterRecipes(filter) {
         activeFilters = [];
     } else {
         activeFilters = [filter];
+    }
+    
+    // Check if there are any selected ingredients
+    const selectedIngredients = document.getElementById('selectedIngredients');
+    const ingredients = Array.from(selectedIngredients.querySelectorAll('.ingredient-tag')).map(tag => tag.textContent.trim());
+    
+    if (ingredients.length === 0) {
+        const recipeList = document.getElementById('recipe-list');
+        recipeList.innerHTML = '<p class="text-center text-gray-500">Please select at least one ingredient to find recipes.</p>';
+        return;
     }
     
     searchRecipes();
@@ -170,6 +180,16 @@ async function searchRecipes() {
     const selectedIngredients = document.getElementById('selectedIngredients');
     const filterButtons = document.querySelectorAll('.filter-button');
     
+    // Check if there are any selected ingredients
+    const ingredients = Array.from(selectedIngredients.querySelectorAll('.ingredient-tag')).map(tag => 
+        tag.textContent.trim().replace(/×/g, '').trim()
+    );
+    
+    if (ingredients.length === 0) {
+        recipeList.innerHTML = '<p class="text-center text-gray-500">Please select at least one ingredient to find recipes.</p>';
+        return;
+    }
+    
     // Show loading state
     loading.classList.remove('hidden');
     recipeList.innerHTML = '';
@@ -185,9 +205,6 @@ async function searchRecipes() {
     try {
         // Get active filter
         const activeFilter = Array.from(filterButtons).find(btn => btn.classList.contains('active'))?.getAttribute('onclick')?.match(/'([^']+)'/)?.[1] || 'all';
-        
-        // Get selected ingredients
-        const ingredients = Array.from(selectedIngredients.querySelectorAll('.ingredient-tag')).map(tag => tag.textContent.trim());
         
         const response = await fetch('http://localhost:3000/api/recipes', {
             method: 'POST',
@@ -310,6 +327,38 @@ document.addEventListener('DOMContentLoaded', async () => {
             dropdown.classList.add('hidden');
         }
     });
+
+    // Contact form submission
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('contactName').value;
+            const email = document.getElementById('contactEmail').value;
+            const message = document.getElementById('contactMessage').value;
+
+            try {
+                const response = await fetch('http://localhost:3000/api/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name, email, message })
+                });
+
+                if (response.ok) {
+                    alert('Thank you for your message! We will get back to you soon.');
+                    contactForm.reset();
+                } else {
+                    throw new Error('Failed to send message');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Sorry, there was an error sending your message. Please try again later.');
+            }
+        });
+    }
 });
 
 /* Fix dropdown alignment and visibility */
