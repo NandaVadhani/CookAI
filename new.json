@@ -1,0 +1,309 @@
+[{
+    "name": "Vegetable Stir Fry",
+    "instructions": [
+      "Heat oil in wok",
+      "Add vegetables",
+      "Stir fry with sauce",
+      "Serve over rice"
+    ],
+    "calories_per_serving": 320,
+    "difficulty_level": "Easy",
+    "prep_time": "20 mins",
+    "servings": 2,
+    "dietaryRestrictions": [
+      "vegetarian",
+      "vegan",
+      "healthy"
+    ],
+    "image_url": "https://images.themodernproper.com/production/posts/VegetableStirFry_9.jpg?w=1200&h=1200&q=60&fm=jpg&fit=crop&dm=1703377301&s=79d95f7318643d92c30863f226d5eb8e",
+    "video_url": null,
+    "ingredients": [
+      {
+        "name": "Capsicum",
+        "quantity": 4,
+        "unit": "cups"
+      },
+      {
+        "name": "Cabbage",
+        "quantity": 4,
+        "unit": "cups"
+      },
+      {
+        "name": "Carrot",
+        "quantity": 4,
+        "unit": "cups"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": 4,
+        "unit": "cups"
+      },
+      {
+        "name": "Onion",
+        "quantity": 4,
+        "unit": "cups"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 4,
+        "unit": "cloves"
+      },
+      {
+        "name": "Salt",
+        "quantity": 1,
+        "unit": "tsp"
+      },
+      {
+        "name": "rice",
+        "quantity": 1,
+        "unit": "cup"
+      },
+      {
+        "name": "soy sauce",
+        "quantity": 2,
+        "unit": "tbsp"
+      },
+      {
+        "name": "garlic",
+        "quantity": 2,
+        "unit": "cloves"
+      },
+      {
+        "name": "ginger",
+        "quantity": 1,
+        "unit": "tbsp"
+      },
+      {
+        "name": "sesame oil",
+        "quantity": 1,
+        "unit": "tbsp"
+      }
+    ]
+  },
+  {
+   
+    "name": "Chicken Stir Fry",
+    "instructions": [
+      "Prepare chicken",
+      "Stir fry chicken with vegetables",
+      "Add sauce",
+      "Serve hot"
+    ],
+    "calories_per_serving": 550,
+    "difficulty_level": "Medium",
+    "prep_time": "25 mins",
+    "servings": 2,
+    "dietaryRestrictions": [
+      "non-vegetarian"
+    ],
+    "image_url": "https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2021/05/Chicken-Stir-Fry-main.jpg",
+    "video_url": null,
+    "ingredients": [
+      {
+        "name": "chicken",
+        "quantity": 300,
+        "unit": "g"
+      },
+      {
+        "name": "Capsicum",
+        "quantity": 2,
+        "unit": "pieces"
+      },
+      {
+        "name": "carrot",
+        "quantity": 1,
+        "unit": "piece"
+      },
+      {
+        "name": "onion",
+        "quantity": 1,
+        "unit": "piece"
+      },
+      {
+        "name": "zucchini",
+        "quantity": 1,
+        "unit": "piece"
+      },
+      {
+        "name": "broccoli",
+        "quantity": 1,
+        "unit": "cup"
+      },
+      {
+        "name": "soy sauce",
+        "quantity": 3,
+        "unit": "tbsp"
+      },
+      {
+        "name": "garlic",
+        "quantity": 2,
+        "unit": "cloves"
+      }
+    ]
+  },
+  {
+   
+    "name": "Quinoa Buddha Bowl",
+    "instructions": [
+      "Cook quinoa",
+      "Roast vegetables",
+      "Add to bowl",
+      "Top with dressing"
+    ],
+    "calories_per_serving": 380,
+    "difficulty_level": "Easy",
+    "prep_time": "20 mins",
+    "servings": 2,
+    "dietaryRestrictions": [
+      "vegetarian",
+      "vegan",
+      "healthy",
+      "gluten-free"
+    ],
+    "image_url": "https://mydeliciousblog.com/wp-content/uploads/2018/08/Buddha-Bowl-with-Quinoa.jpg",
+    "video_url": null,
+    "ingredients": [
+      {
+        "name": "quinoa",
+        "quantity": 1,
+        "unit": "cup"
+      },
+      {
+        "name": "sweet potato",
+        "quantity": 1,
+        "unit": "piece"
+      },
+      {
+        "name": "chickpeas",
+        "quantity": 1,
+        "unit": "cup"
+      },
+      {
+        "name": "avocado",
+        "quantity": 1,
+        "unit": "piece"
+      },
+      {
+        "name": "Carrots",
+        "quantity": 2,
+        "unit": "tbsp"
+      },
+      {
+        "name": "spinach",
+        "quantity": 2,
+        "unit": "cups"
+      },
+      {
+        "name": "olive oil",
+        "quantity": 2,
+        "unit": "tbsp"
+      },
+      {
+        "name": "lemon",
+        "quantity": 1,
+        "unit": "tbsp"
+      }
+    ]
+  },
+  {
+    
+    "name": "Beef Tacos",
+    "instructions": [
+      "Cook beef with taco seasoning",
+      "Warm tortillas",
+      "Assemble tacos with toppings"
+    ],
+    "calories_per_serving": 620,
+    "difficulty_level": "Medium",
+    "prep_time": "35 mins",
+    "servings": 4,
+    "dietaryRestrictions": [
+      "non-vegetarian"
+    ],
+    "image_url": "https://danosseasoning.com/wp-content/uploads/2022/03/Beef-Tacos-1024x767.jpg",
+    "video_url": null,
+    "ingredients": [
+      {
+        "name": "beef",
+        "quantity": 500,
+        "unit": "g"
+      },
+      {
+        "name": "Onion",
+        "quantity": 2,
+        "unit": "tbsp"
+      },
+      {
+        "name": "Avacado",
+        "quantity": 8,
+        "unit": "pieces"
+      },
+      {
+        "name": "lettuce",
+        "quantity": 1,
+        "unit": "cup"
+      },
+      {
+        "name": "tomato",
+        "quantity": 2,
+        "unit": "pieces"
+      },
+      {
+        "name": "cheese",
+        "quantity": 1,
+        "unit": "cup"
+      },
+      {
+        "name": "Corn",
+        "quantity": 2,
+        "unit": "tbsp"
+      }
+    ]
+  },
+  {
+    
+    "name": "Mushroom Risotto",
+    "instructions": [
+      "Sauté mushrooms",
+      "Add rice",
+      "Gradually add broth",
+      "Cook until creamy"
+    ],
+    "calories_per_serving": 480,
+    "difficulty_level": "Medium",
+    "prep_time": "45 mins",
+    "servings": 4,
+    "dietaryRestrictions": [
+      "vegetarian"
+    ],
+    "image_url": "https://hips.hearstapps.com/del.h-cdn.co/assets/17/35/2048x1536/sd-aspect-1504128527-delish-mushroom-risotto.jpg?resize=1200:*",
+    "video_url": null,
+    "ingredients": [
+      {
+        "name": "rice",
+        "quantity": 2,
+        "unit": "cups"
+      },
+      {
+        "name": "mushroom",
+        "quantity": 3,
+        "unit": "cups"
+      },
+      {
+        "name": "Spinach",
+        "quantity": 4,
+        "unit": "cups"
+      },
+      {
+        "name": "cheese",
+        "quantity": 0.5,
+        "unit": "cup"
+      },
+      {
+        "name": "Peas",
+        "quantity": 0.5,
+        "unit": "cup"
+      }
+    ]
+  }
+]

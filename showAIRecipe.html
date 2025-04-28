@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CookAI • Recipe</title>
+    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #FF7043;
+            --secondary-color: #FFCCBC;
+            --accent-color: #FF5722;
+            --text-color: #333333;
+            --light-bg: #F9F9F9;
+            --bubble-bg: #F5F5F5;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            background: url('./2_FOR_BACKGROUND.jpg') no-repeat center center fixed;
+            background-size: cover;
+            padding: 20px;
+            position: relative;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .navbar {
+            background: rgba(242, 240, 240, 0.137);
+            padding: 1rem 2rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transform: translateZ(0);
+            will-change: transform;
+            backdrop-filter: blur(8px);
+        }
+
+        .navbar .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            margin: 0;
+        }
+
+        .navbar .logo h1 {
+            font-size: 1.5rem;
+            color: #333;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #0b0b0b;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.2s ease;
+            will-change: background-color;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(26, 115, 232, 0.1);
+        }
+
+        .nav-link i {
+            font-size: 1.1rem;
+        }
+        
+        .main-content {
+            max-width: 800px;
+            margin: 6rem auto 2rem;
+            padding: 0 1rem;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+        }
+        
+        h1 {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-top: 0;
+            text-align: center;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+        
+        .recipe-image {
+            width: 100%;
+            height: auto;
+            border-radius: 0.75rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--card-shadow);
+            object-fit: cover;
+            aspect-ratio: 16/9;
+        }
+        
+        .recipe-meta {
+            display: flex;
+            justify-content: space-around;
+            margin: 1.5rem 0;
+            background-color: var(--secondary-color);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .recipe-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        
+        .recipe-meta i {
+            color: var(--accent-color);
+            font-size: 1.25rem;
+        }
+        
+        .recipe-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 1.5rem 0;
+            justify-content: center;
+        }
+        
+        .tag {
+            background-color: var(--secondary-color);
+            color: var(--accent-color);
+            padding: 0.4rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease;
+        }
+        
+        .tag:hover {
+            transform: translateY(-2px);
+        }
+        
+        .bubble {
+            max-width: 100%;
+            margin: 1.5rem auto;
+            padding: 1.25rem;
+            border-radius: 1rem;
+            background-color: var(--bubble-bg);
+            box-shadow: var(--card-shadow);
+            position: relative;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .bubble:before {
+            content: counter(step);
+            counter-increment: step;
+            position: absolute;
+            left: -12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: var(--primary-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        #chat-container {
+            counter-reset: step;
+        }
+        
+        .video {
+            text-align: center;
+            margin: 2rem auto;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .video iframe {
+            max-width: 100%;
+            border-radius: 0.75rem;
+        }
+        
+        .recipe-link {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            font-size: 1rem;
+            color: var(--accent-color);
+            text-align: center;
+            border-top: 1px solid var(--secondary-color);
+        }
+        
+        .recipe-link a {
+            text-decoration: none;
+            color: var(--accent-color);
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+        
+        .recipe-link a:hover {
+            text-decoration: underline;
+            color: var(--primary-color);
+        }
+        
+        .ingredients-section {
+            margin: 2rem 0;
+        }
+        
+        .ingredients-title {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .ingredients-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 0.75rem;
+        }
+        
+        .ingredient-item {
+            background-color: var(--bubble-bg);
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .ingredient-item i {
+            color: var(--accent-color);
+            margin-right: 0.5rem;
+        }
+        
+        @media (max-width: 640px) {
+            .recipe-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .container {
+                padding: 1.25rem;
+            }
+            
+            .ingredients-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="./App_Frontend.html" class="logo">
+            <i class="fas fa-utensils"></i>
+            <h1>CookAI</h1>
+        </a>
+        <div class="nav-links">
+            <a href="./App_Frontend.html" class="nav-link">
+                <i class="fas fa-home"></i> Home
+            </a>
+            <a href="#" class="nav-link">
+                <i class="fas fa-plus-circle"></i> Add Recipe
+            </a>
+            <a href="#" class="nav-link">
+                <i class="fas fa-info-circle"></i> About
+            </a>
+            <a href="#" class="nav-link">
+                <i class="fas fa-envelope"></i> Contact
+            </a>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <div class="container">
+            <h1 id="recipe-name"></h1>
+            
+            
+            <div class="recipe-meta">
+                <span><i class="fas fa-clock"></i> <span id="prep-time"></span></span>
+                <span><i class="fas fa-fire"></i> <span id="calories"></span> cal/serving</span>
+                <span><i class="fas fa-utensils"></i> <span id="servings"></span> servings</span>
+                <span><i class="fas fa-chart-line"></i> <span id="difficulty"></span></span>
+            </div>
+            
+            <div id="recipe-tags" class="recipe-tags"></div>
+            
+            <div class="ingredients-section">
+                <h2 class="ingredients-title">Ingredients</h2>
+                <div id="ingredients-list" class="ingredients-list"></div>
+            </div>
+            
+            <h2 class="ingredients-title">Instructions</h2>
+            <div id="chat-container"></div>
+            
+            <div class="video" id="video-container"></div>
+            
+            <div id="recipe-link" class="recipe-link"></div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                // Get recipe from sessionStorage
+                const recipeString = sessionStorage.getItem('data');
+                
+                if (!recipeString) {
+                    alert('No recipe found in sessionStorage');
+                    return;
+                }
+                
+                // Parse the recipe JSON
+                const recipe = JSON.parse(recipeString);
+                const nr = recipe.recipe;
+                const final = JSON.parse(nr);
+                
+                
+                // Populate recipe details
+                document.getElementById('recipe-name').innerText = final.name || 'Unnamed Recipe';
+                document.getElementById('prep-time').innerText = final.prep_time || 'N/A';
+                document.getElementById('calories').innerText = final.calories_per_serving || 'N/A';
+                document.getElementById('servings').innerText = final.servings || 'N/A';
+                document.getElementById('difficulty').innerText = final.difficulty_level || 'N/A';
+
+                // Update dietary restrictions/tags
+                const tagsContainer = document.getElementById('recipe-tags');
+                const restrictions = final.dietaryRestrictions || [];
+                
+                if (restrictions.length > 0) {
+                    tagsContainer.innerHTML = restrictions.map(restriction => 
+                        `<span class="tag">${restriction}</span>`
+                    ).join('');
+                } else {
+                    tagsContainer.innerHTML = '<span class="tag">No Restrictions</span>';
+                }
+
+                // Display ingredients
+                const ingredientsList = document.getElementById('ingredients-list');
+                if (final.ingredients && final.ingredients.length > 0) {
+                    final.ingredients.forEach(ingredient => {
+                        const item = document.createElement('div');
+                        item.className = 'ingredient-item';
+                        item.innerHTML = `
+                            <i class="fas fa-check-circle"></i>
+                            <span>${ingredient.quantity} ${ingredient.unit} ${ingredient.name}</span>
+                        `;
+                        ingredientsList.appendChild(item);
+                    });
+                } else {
+                    ingredientsList.innerHTML = '<div class="ingredient-item">No ingredients listed</div>';
+                }
+
+                // Update instructions
+                const chat = document.getElementById('chat-container');
+                const instructions = Array.isArray(final.instructions) ? final.instructions : [];
+                
+                if (instructions.length === 0) {
+                    const b = document.createElement('div');
+                    b.className = 'bubble';
+                    b.innerText = 'No instructions available.';
+                    chat.appendChild(b);
+                } else {
+                    instructions.forEach(step => {
+                        const b = document.createElement('div');
+                        b.className = 'bubble';
+                        b.innerText = step;
+                        chat.appendChild(b);
+                    });
+                }
+
+                // Embed the YouTube video if available
+                const videoContainer = document.getElementById('video-container');
+                if (final.video_url) {
+                    videoContainer.innerHTML = `
+                        <iframe
+                            width="560" height="315"
+                            src="${recipe.video_url.replace('watch?v=','embed/')}"
+                            frameborder="0"
+                            allowfullscreen>
+                        </iframe>`;
+                } else {
+                    videoContainer.style.display = 'none';
+                }
+
+                // Add recipe site URL if available
+                const recipeLinkContainer = document.getElementById('recipe-link');
+                if (final.site_url) {
+                    recipeLinkContainer.innerHTML = `For the full recipe, visit <a href="${final.site_url}" target="_blank">${final.site_url}</a>`;
+                } else {
+                    recipeLinkContainer.innerHTML = 'Recipe created with CookAI';
+                }
+                
+            } catch (error) {
+                console.error('Error loading recipe:', error);
+                alert('There was an error loading the recipe. Please try again.');
+            }
+        });
+    </script>
+</body>
+</html>

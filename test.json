@@ -1,0 +1,88 @@
+{
+    "_id": {
+      "$oid": "680798ac1b62d56b80712e51"
+    },
+    "name": "Vegetable Pasta",
+    "instructions": [
+      "Cook pasta",
+      "Sauté vegetables",
+      "Combine and serve"
+    ],
+    "calories_per_serving": 450,
+    "difficulty_level": "Easy",
+    "prep_time": "30 mins",
+    "servings": 4,
+    "dietaryRestrictions": [
+      "vegetarian",
+      "healthy"
+    ],
+    "image_url": "https://iheartvegetables.com/wp-content/uploads/2023/08/15-Minute-Vegetable-Pasta-5-of-8.jpg",
+    "video_url": null,
+    "ingredients": [
+      {
+        "name": "pasta",
+        "quantity": 2,
+        "unit": "cups"
+      },
+      {
+        "name": "Onion",
+        "quantity": 3,
+        "unit": "cups"
+      },
+      {
+        "name": "Tomato",
+        "quantity": 3,
+        "unit": "cups"
+      },
+      {
+        "name": "Zucchini",
+        "quantity": 3,
+        "unit": "cups"
+      },
+      {
+        "name": "Carrot",
+        "quantity": 3,
+        "unit": "cups"
+      },
+      {
+        "name": "Spinach",
+        "quantity": 3,
+        "unit": "cups"
+      },
+      {
+        "name": "Peas",
+        "quantity": 3,
+        "unit": "cups"
+      },
+      {
+        "name": "Corn",
+        "quantity": 3,
+        "unit": "cups"
+      },
+      {
+        "name": "Cauliflower",
+        "quantity": 3,
+        "unit": "cups"
+      },
+      {
+        "name": "olive oil",
+        "quantity": 2,
+        "unit": "tbsp"
+      },
+      {
+        "name": "Brocoli",
+        "quantity": 3,
+        "unit": "cups"
+      },
+      {
+        "name": "garlic",
+        "quantity": 2,
+        "unit": "cloves"
+      },
+      {
+        "name": "salt",
+        "quantity": 1,
+        "unit": "tsp"
+      }
+    ]
+}
